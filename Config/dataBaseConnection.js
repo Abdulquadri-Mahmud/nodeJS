@@ -1,12 +1,13 @@
-const { default : Mongoose } = require("mongoose")
+const { default: Mongoose } = require("mongoose");
 
-const dbConnection = () => {
-    try {
-        const conn = Mongoose.connect("mongodb://localhost:27017/digitic");
-        console.log('Database Connected Successfully');
-    } catch (error) {
-        console.log('Database Error!');
-    }
-}
+const dbConnection = async () => {
+    await Mongoose.connect("mongodb://localhost:27017/digitic").then(() => {
+        console.log("Database Connected Successfully");
+    }).catch((error) => {   
+        console.log("Error: ", error);
+    });
+   
+
+};
 
 module.exports = dbConnection;
